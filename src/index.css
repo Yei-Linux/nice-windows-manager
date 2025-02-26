@@ -1,0 +1,6 @@
+@font-face {
+  font-family: excalifont;
+  src: url("./fonts/Excalifont-Regular.woff2");
+}
+
+@import "tailwindcss";
