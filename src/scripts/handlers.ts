@@ -5,7 +5,7 @@ export const handleGetMacosWindows = async () => {
   try {
     const windows = await getWindows();
     const windowsWithIcons = await Promise.all(
-      windows.map(async (window) => getAppIconBase64(window))
+      windows.map(async (window, i) => getAppIconBase64(window, i))
     );
 
     return windowsWithIcons;

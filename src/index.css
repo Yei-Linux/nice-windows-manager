@@ -3,4 +3,8 @@
   src: url("./fonts/Excalifont-Regular.woff2");
 }
 
+.split-view-container {
+  min-height: inherit;
+}
+
 @import "tailwindcss";

@@ -1,4 +1,5 @@
 import "./index.css";
+import "allotment/dist/style.css";
 
 import * as React from "react";
 import { createRoot } from "react-dom/client";

@@ -16,6 +16,7 @@ export type TWindowProp = {
   "sub-layer": string;
   opacity: number;
   icon?: string;
+  order: number;
 };
 
 export type TWindowsProps = Array<TWindowProp>;

@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import { useWindowsStore } from "../../store/windows.store";
 
 type TScreensTabHeader = {
   screens: number;
@@ -11,6 +12,8 @@ export const ScreensTabHeader = ({
   setTabIndexActive,
   tabIndexActive,
 }: TScreensTabHeader) => {
+  const windows = useWindowsStore((store) => store.windows);
+
   return (
     <div className="flex justify-between w-full">
       <ul className="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
@@ -33,7 +36,15 @@ export const ScreensTabHeader = ({
           ))}
       </ul>
 
-      <button className="bg-sky-500 px-4 py-3 shadow-md rounded-lg cursor-pointer p-0 h-fit">
+      <button
+        className={classNames(
+          "bg-sky-500 px-4 py-3 shadow-md rounded-lg cursor-pointer p-0 h-fit",
+          {
+            "cursor-not-allowed opacity-50": !!windows.length,
+          }
+        )}
+        disabled={!!windows.length}
+      >
         Save
       </button>
     </div>

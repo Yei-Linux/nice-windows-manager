@@ -1,5 +1,5 @@
 import { Draggable } from "@hello-pangea/dnd";
-import { TWindowProp } from "../types";
+import { TWindowProp } from "../../types";
 
 export const WindowItem = ({ title, app, icon, id }: TWindowProp) => {
   return (
@@ -15,7 +15,7 @@ export const WindowItem = ({ title, app, icon, id }: TWindowProp) => {
           <div className="flex flex-col">
             <p className="font-bold font-[excalifont]">{app}</p>
             <p className="text-xs max-w-[150px] overflow-hidden whitespace-nowrap text-ellipsis">
-              {title.slice(0, 80)}
+              {title}
             </p>
           </div>
         </li>
