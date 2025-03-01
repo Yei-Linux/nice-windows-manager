@@ -42,11 +42,10 @@ export const ScreenWindowFrame = ({
         }
       )}
       onClick={handleClickSelection}
+      id={`windows_${id}`}
     >
       <img src={icon} width={50} height={50} />
-      <h3 className="text-md font-bold">
-        {app} {id}
-      </h3>{" "}
+      <h3 className="text-md font-bold">{app}</h3>{" "}
       <p className="text-xs max-w-[350px] overflow-hidden whitespace-nowrap text-ellipsis">
         {title}
       </p>

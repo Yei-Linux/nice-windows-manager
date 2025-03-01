@@ -1,6 +1,7 @@
 import { app, BrowserWindow, ipcMain } from "electron";
 import { handleGetMacosWindows } from "./scripts/handlers";
 import { getNumberOfScreens } from "./scripts/get-number-of-screens";
+import { moveWindows } from "./scripts/move-windows";
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
@@ -24,6 +25,7 @@ const createWindow = (): void => {
 
   ipcMain.handle("get-macos-windows", handleGetMacosWindows);
   ipcMain.handle("get-number-of-screens", getNumberOfScreens);
+  ipcMain.handle("move-windows", moveWindows);
 };
 
 app.on("ready", createWindow);

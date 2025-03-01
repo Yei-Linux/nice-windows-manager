@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-import { TScreenProperties, useWindowsStore } from "../store/windows.store";
+import { useWindowsStore } from "../store/windows.store";
+import { TScreenProperties } from "../types";
 
 type TUseFillWindowsByScreen = {
   screens: Array<TScreenProperties>;

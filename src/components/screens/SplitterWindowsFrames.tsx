@@ -13,7 +13,10 @@ export const SplitterWindowsFrames = ({
   return (
     <div className="flex flex-col gap-4">
       <div className="bg-white text-black h-full w-full">
-        <Allotment className="min-h-[600px]">
+        <Allotment
+          className="min-h-[600px]"
+          id={`allotment_${screenWithWindows.screenNumber}`}
+        >
           {screenWithWindows.windows.map((column, i) => (
             <Allotment.Pane key={i} className="min-h-[600px]">
               <Allotment vertical className="min-h-[inherit] bg-transparent">

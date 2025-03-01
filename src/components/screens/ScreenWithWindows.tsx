@@ -23,14 +23,21 @@ export const ScreenWithWindows = ({
 
   return (
     <div
-      className={classNames({
-        hidden: !isVisible,
-      })}
+      className={classNames(
+        "absolute inset-0 min-h-[calc(95vh-60px)] min-w-[100%] bg-[#2b2727]",
+        {
+          "z-[-1]": !isVisible,
+          "z-[10]": isVisible,
+        }
+      )}
     >
-      <Droppable droppableId={screenNumber.toString()}>
+      <Droppable
+        droppableId={screenNumber.toString()}
+        isDropDisabled={!isVisible}
+      >
         {(provided) => (
           <div
-            className="m-auto flex flex-col justify-center min-h-[calc(95vh-60px)] p-4"
+            className="m-auto flex flex-col min-h-[100%] justify-center p-4"
             {...provided.droppableProps}
             ref={provided.innerRef}
           >
