@@ -1,5 +1,8 @@
-import { Draggable } from "@hello-pangea/dnd";
-import { TScreensWithWindows } from "../../store/windows.store";
+import { useSwapgWindowsFrame } from "../../hooks/useSwapWindowsFrame";
+import {
+  TScreensWithWindows,
+  useWindowsStore,
+} from "../../store/windows.store";
 import classNames from "classnames";
 
 type TWindosScreen = TScreensWithWindows[number]["windows"][number][number];
@@ -13,30 +16,40 @@ export const ScreenWindowFrame = ({
   frame,
   display,
 }: TWindosScreen) => {
+  const { swap } = useSwapgWindowsFrame();
+  const sourceWindowsIdSelected = useWindowsStore(
+    (store) => store.sourceWindowsIdSelected
+  );
+  const setSourceWindowsIdSelected = useWindowsStore(
+    (store) => store.setSourceWindowsIdSelected
+  );
+
+  const handleClickSelection = () => {
+    if (sourceWindowsIdSelected) {
+      swap(id);
+      setSourceWindowsIdSelected(undefined);
+      return;
+    }
+    setSourceWindowsIdSelected(id);
+  };
+
   return (
-    <>
-      <Draggable draggableId={id.toString()} index={id} key={id}>
-        {(provided, snapshot) => (
-          <div
-            className={classNames(
-              "flex flex-col gap-1 bg-zinc-50 text-black justify-center items-center rounded-md p-3 w-full min-h-[100%]",
-              {
-                "!min-h-[auto] !max-h-[auto] !max-w-[auto]":
-                  snapshot.isDragging,
-              }
-            )}
-            {...provided.dragHandleProps}
-            {...provided.draggableProps}
-            ref={provided.innerRef}
-          >
-            <img src={icon} width={50} height={50} />
-            <h3 className="text-md font-bold">{app}</h3>{" "}
-            <p className="text-xs max-w-[350px] overflow-hidden whitespace-nowrap text-ellipsis">
-              {title}
-            </p>
-          </div>
-        )}
-      </Draggable>
-    </>
+    <div
+      className={classNames(
+        "flex flex-col gap-1 bg-zinc-50 text-black justify-center items-center rounded-md p-3 w-full min-h-[100%] cursor-pointer hover:border-4 hover:border hover:border-purple-600",
+        {
+          "border-4 border border-purple-600": sourceWindowsIdSelected === id,
+        }
+      )}
+      onClick={handleClickSelection}
+    >
+      <img src={icon} width={50} height={50} />
+      <h3 className="text-md font-bold">
+        {app} {id}
+      </h3>{" "}
+      <p className="text-xs max-w-[350px] overflow-hidden whitespace-nowrap text-ellipsis">
+        {title}
+      </p>
+    </div>
   );
 };
